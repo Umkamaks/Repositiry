@@ -1,0 +1,27 @@
+﻿
+@using DAL.Entities
+@model WEB.Models.NewsRubricViewModel
+
+<div class="left-col">
+    @foreach (var rubrics in Model.RubricViewModel)
+    {
+        <p>
+            @Html.ActionLink(rubrics.NameRubric, "Index", "Home", new { rubric = rubrics.NameRubric }, null)
+        </p>
+        <ul>
+            @{
+                int i = 0;
+                foreach (News news in rubrics.News)
+                {
+                    i++;
+
+                    if (i <= 10)
+                    {
+                        <li>@Html.ActionLink(news.TitleNews, "News", "Home", new { id = news.Id, rubric = news.Rubric.NameRubric }, null)</li>}
+
+                }
+            }
+
+        </ul>
+                }
+</div>

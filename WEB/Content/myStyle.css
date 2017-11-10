@@ -1,0 +1,131 @@
+body div,
+p,
+ul,
+h2,
+h3,
+h4,
+h5,
+img {
+    margin: 0;
+    padding: 0;
+}
+
+.left-col {
+    margin-top: 10px;
+    width: auto;
+    font-size: 10px;
+}
+
+.logo {
+    width: auto;
+    height: 70px;
+    background-color: gray;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.carusel {
+    padding-bottom: 5px;
+}
+
+.left-col p {
+    margin-bottom: 10px;
+}
+
+    .left-col p a {
+        color: #000000;
+        text-decoration: none;
+    }
+
+.left-col ul {
+    padding-left: 5px;
+    text-decoration: none;
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+    .left-col ul li {
+        text-align: justify;
+    }
+
+        .left-col ul li a {
+            color: #6b6b6b;
+            display: block;
+            text-decoration: none;
+            padding: 0 0 0 15px;
+            line-height: 19px;
+            background: url(/Images/bullet-normal.gif) 0 7px no-repeat;
+        }
+
+            .left-col ul li a:hover {
+                background: url(/Images/bullet-hover.gif) 0 7px no-repeat;
+            }
+
+.main_news {
+    display: block;
+    width: auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.table_news {
+    background-color: #fbfbfb;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 1px solid #cccccc; /* Линия сверху текста */
+    border-bottom: 1px solid #cccccc;
+}
+
+    .table_news:hover {
+        background-color: #e6e6e6
+    }
+
+.rublic {
+    margin-left: 10px;
+}
+
+.date_create {
+    margin-right: 10px;
+}
+
+.title_news {
+    text-align: center;
+}
+
+.image {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100px;
+    height: 90px;
+}
+
+.source_news {
+    margin-left: 10px;
+}
+
+.more {
+    margin-right: 10px
+}
+
+.pagin {
+    clear: both;
+    margin-top: 25px;
+    width: 100%;
+    padding-left: 40%;
+    height: auto;
+}
+
+.page-link {
+    color: #6b6b6b;
+}
+
+.moreLink {
+    display: block;
+    color: #000000;
+    text-decoration: none;
+}
+
+    .moreLink:hover {
+        color: #0c0c0c;
+        text-decoration: none;
+    }

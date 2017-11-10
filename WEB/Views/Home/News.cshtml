@@ -1,0 +1,76 @@
+﻿@model WEB.Models.NewsRubricViewModel
+@{
+    ViewBag.Title = "Новости";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main_news d-none d-md-block">
+    <table class="table_news">
+        <tr>
+            <td colspan="3">
+                <div class="rublic" style="float: left;">@Html.DisplayFor(item=>Model.NewsDTO.Rubric.NameRubric)</div>
+                <div class="date_create" style="float: right;">@Html.DisplayFor(item => Model.NewsDTO.CreateDateTimeNews)</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="title_news" colspan="3">@Html.DisplayFor(item => Model.NewsDTO.TitleNews)</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="image">
+                    <img src="@Html.DisplayFor(item => Model.NewsDTO.StringImage)" alt="image" style="width: 100%;">
+                </div>
+            </td>
+            <td style="text-align: justify;" colspan="2">@Html.DisplayFor(item => Model.NewsDTO.FullNews)</td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="source_news" style="float: left;">(@Html.DisplayFor(item => Model.NewsDTO.NewsSource.NameSourceNews))</div>
+            </td>
+        </tr>
+    </table>
+</div>
+@{
+    int i = 0;
+    foreach (var news in Model.NewsViewModel.OrderByDescending(m=>m.Id))
+    {
+        i++;
+        if (Model.NewsDTO.Id != news.Id)
+        {
+            if (i <= 6)
+            {
+                <div class="main_news d-none d-md-block">
+                    <table class="table_news"style="float: left; width: 50%;">
+                        <tr>
+                            <td colspan="3">
+                                <div class="rublic" style="float: left;">@Html.DisplayFor(modelItem => news.RubricName)</div>
+                                <div class="date_create" style="float: right;">@Html.DisplayFor(modelItem => news.CreateDateTimeNews)</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title_news" colspan="3">@Html.DisplayFor(modelItem => news.TitleNews)</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="image">
+                                    <img src="@Html.DisplayFor(modelItem => news.StringImage)" alt="image" style="width: 100%;">
+                                </div>
+                            </td>
+                            <td style="text-align: justify;" colspan="2">@Html.DisplayFor(modelItem => news.PreviewNews)</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="source_news" style="float: left;">(@Html.DisplayFor(modelItem => news.SourceName))</div>
+                                <div class="more" style="float: right;">
+                                    @Html.ActionLink("More..", "News", "Home", new {id = news.Id, rubric = news.RubricName}, new {@class = "moreLink"})
+
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            }
+        }
+    }
+}
+
