@@ -70,24 +70,11 @@ namespace WEB.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            //IEnumerable<NewsDTO> newsDtos = newsService.GetAllNews();
-
-            //Mapper.Initialize(cfg => cfg.CreateMap<NewsDTO, NewsViewModel>()
-            //    .ForMember(d => d.RubricName, opt => opt.MapFrom(src => src.Rubric.NameRubric))
-            //    .ForMember(d => d.SourceName, opt => opt.MapFrom(src => src.NewsSource.NameSourceNews)));
-
-            //var news = Mapper.Map<IEnumerable<NewsDTO>, List<NewsViewModel>>(newsDtos);
-
+            
             SelectList rubrics = new SelectList(newsService.GetAllRubrics(), "Id", "NameRubric");
-
             SelectList suorceNews = new SelectList(newsService.GetAllNewsSources(), "Id", "NameSourceNews");
             ViewBag.Rublics = rubrics;
             ViewBag.SourceNews = suorceNews;
-            //NewsRubricViewModel newsRubricViewModel = new NewsRubricViewModel()
-            //{
-            //    NewsViewModel = news
-            //};
-
             return View();
         }
 
@@ -109,11 +96,7 @@ namespace WEB.Controllers
         public JsonResult UploadAjax(string bgSrc)
         {
             string image = bgSrc.Substring(22);
-
-            //this is a simple white background image
             var myfilename = string.Format(@"{0}", Guid.NewGuid());
-
-            //Generate unique filename
             string filepath = "~/Image/" + myfilename + ".jpeg";
             var bytess = Convert.FromBase64String(image);
             using (var imageFile = new FileStream(Server.MapPath(filepath), FileMode.Create))
