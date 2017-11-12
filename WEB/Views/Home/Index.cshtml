@@ -30,7 +30,7 @@
                                 <img src="@Html.DisplayFor(modelItem => item.StringImage)" alt="image" style="width: 100%;">
                             </div>
                         </td>
-                        <td style="text-align: justify;" colspan="2">@Html.DisplayFor(modelItem => item.PreviewNews)</td>
+                        <td style="text-align: justify;" colspan="2">@Html.Raw(item.PreviewNews)</td>
                     </tr>
                     <tr>
                         <td colspan="3">
@@ -63,7 +63,7 @@
                                 <img src="@Html.DisplayFor(modelItem => item.StringImage)" alt="image" style="width: 100%;">
                             </div>
                         </td>
-                        <td style="text-align: justify;" colspan="2">@Html.DisplayFor(modelItem => item.PreviewNews)</td>
+                        <td style="text-align: justify;" colspan="2">@Html.Raw(item.PreviewNews)</td>
                     </tr>
                     <tr>
                         <td colspan="3">

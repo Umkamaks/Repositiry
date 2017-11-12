@@ -21,7 +21,7 @@
                     <img src="@Html.DisplayFor(item => Model.NewsDTO.StringImage)" alt="image" style="width: 100%;">
                 </div>
             </td>
-            <td style="text-align: justify;" colspan="2">@Html.DisplayFor(item => Model.NewsDTO.FullNews)</td>
+            <td style="text-align: justify;" colspan="2">@Html.Raw(Model.NewsDTO.FullNews)</td>
         </tr>
         <tr>
             <td colspan="3">

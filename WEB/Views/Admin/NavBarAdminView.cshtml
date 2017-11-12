@@ -1,0 +1,40 @@
+﻿
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            @Html.ActionLink("NewSite", "Index", "Home", null, new { @class = "navbar-brand" })
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Новость
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>  @Html.ActionLink("Лист новостей", "ListNews", "Admin")</li>
+                    <li>@Html.ActionLink("Создать новость", "Create", "Admin")</li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Рубрика
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>  @Html.ActionLink("Лист рубрик", "RubricList", "Admin")</li>
+                    <li>@Html.ActionLink("Создать рубрику", "CreateRubric", "Admin")</li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Источник новости
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>  @Html.ActionLink("Лист источника новости", "SourceList", "Admin")</li>
+                    <li>@Html.ActionLink("Создать источник новости", "CreateSource", "Admin")</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

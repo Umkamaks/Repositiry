@@ -19,5 +19,6 @@ namespace DAL.Entities
         {
             News = new List<News>();
         }
+
     }
 }

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title – приложение ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+
+    @*@Scripts.Render("~/scripts/jquery-1.7.1.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")*@
+    <script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+    
+</head>
+<body>
+@Html.Partial("~/Views/Admin/NavBarAdminView.cshtml")
+<div class="row">
+    <div class="col-md-10 col-lg-offset-1">
+        @RenderBody()
+    </div>
+</div>
+
+<footer>
+    <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+</footer>
+<script>
+    CKEDITOR.replace('PreviewNews');
+    CKEDITOR.replace('FullNews');
+    //tinymce.init({
+    //    selector: '#PreviewNews'
+    //});
+</script>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</body>
+</html>

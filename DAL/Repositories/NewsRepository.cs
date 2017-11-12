@@ -19,25 +19,26 @@ namespace DAL.Repositories
             this.newsContext = newsContext;
         }
         public void Create(News item)
-        {     
-               newsContext.News.Add(item); 
+        {
+            newsContext.News.Add(item);
+            newsContext.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            News news =  newsContext.News.Find(id);
+            News news = newsContext.News.Find(id);
             if (news != null)
                 newsContext.News.Remove(news);
         }
 
         public IEnumerable<News> Find(Func<News, bool> predicate)
         {
-            return newsContext.News.Include(rub=>rub.Rubric).Include(nsrc=>nsrc.NewsSource).Where(predicate).ToList();
+            return newsContext.News.Include(rub => rub.Rubric).Include(nsrc => nsrc.NewsSource).Where(predicate).ToList();
         }
 
         public News Get(int id)
         {
-           return newsContext.News.Find(id);
+            return newsContext.News.Find(id);
         }
 
         public IEnumerable<News> GetAll()

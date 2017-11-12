@@ -1,0 +1,29 @@
+﻿@using System.Web.UI.WebControls
+@model WEB.Models.NewsRubricViewModel
+
+<form method="get">
+    <div class="form-inline">
+        <div class="row">
+            <div class="col-md-2">
+                <label class="control-label">Рубрика: </label>
+                @Html.DropDownList("NameRubric", ViewBag.Rublics as SelectList,"Все",
+                    htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-md-2">
+                <label class="control-label">Источник новости: </label>
+                @Html.DropDownList("NameSourceNews", ViewBag.SourceNews as SelectList, "Все",
+                    htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="col-md-2">
+                <label class="control-label">Дата создания </label>
+                <select class="form-control" name="NameDataCreate">
+                    <option value="">Новые</option>
+                    <option>Старые</option>
+                </select>
+            </div>
+            <div class="col-md-2" style="margin-top:25px">
+                <input type="submit" value="Фильтр" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>

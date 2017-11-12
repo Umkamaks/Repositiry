@@ -18,6 +18,7 @@ namespace BLL.Interfaces
         RubricDTO GetRubric(int? id);
         IEnumerable<RubricDTO> GetAllRubrics();
 
+        void SetNews(NewsDTO newsDTO);
         void Dispose();
     }
 }

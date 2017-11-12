@@ -9,9 +9,10 @@ namespace WEB.Models
 {
     public class NewsRubricViewModel
     {
-        public NewsDTO NewsDTO{ get; set; }
+        public NewsDTO NewsDTO { get; set; }
         public IEnumerable<NewsViewModel> NewsViewModel { get; set; }
         public IEnumerable<RubricViewModel> RubricViewModel { get; set; }
+        public IEnumerable<SourceViewModel> SourceViewModel { get; set; }
 
 
     }

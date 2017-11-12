@@ -1,0 +1,170 @@
+﻿@model WEB.Models.NewsViewModel
+
+@{
+    ViewBag.Title = "Создать новость";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Выберите картинку</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("~/Views/Admin/DownloadImagView.cshtml")
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+        $(window).load(function() {
+            var options =
+            {
+                thumbBox: '.thumbBox',
+                spinner: '.spinner',
+                imgSrc: 'avatar.png'
+            };
+            var cropper;
+            $('#file').on('change',
+                function() {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        options.imgSrc = e.target.result;
+                        cropper = $('.imageBox').cropbox(options);
+                    }
+
+                    reader.readAsDataURL(this.files[0]);
+                    this.files = [];
+                })
+            $('#btnCrop').on('click',
+                function() {
+                    var img = cropper.getDataURL()
+                    $('.cropped').append('<img class="dropImage" src="' + img + '">');
+                })
+            $('#btnZoomIn').on('click',
+                function() {
+                    cropper.zoomIn();
+                })
+            $('#btnZoomOut').on('click',
+                function() {
+                    cropper.zoomOut();
+                })
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            $("#submit").click(function() {
+                var bgSrc = $('.dropImage').attr('src');
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("UploadAjax", "Admin")',
+                    data: {
+                        bgSrc: bgSrc
+                    },
+                    success: function(result) {
+                        alert("Успех");
+                        $("#StringImage").val(result);
+                    }
+                });
+            });
+        };
+    </script>
+}
+    <h2>Создание новости</h2>
+    @using (Html.BeginForm("Create", "Admin", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr/>
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+            <div class="form-group">
+                @Html.LabelFor(model => model.TitleNews, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.TitleNews, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.TitleNews, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PreviewNews, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-8">
+                    @Html.TextAreaFor(model => model.PreviewNews, 5, 90, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.PreviewNews, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FullNews, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-8">
+                    @Html.TextAreaFor(model => model.FullNews, 10, 90, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.FullNews, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.StringImage, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-md-8">
+
+
+                            @Html.EditorFor(model => model.StringImage, new {htmlAttributes = new {@class = "form-control"}})
+                            @Html.ValidationMessageFor(model => model.StringImage, "", new {@class = "text-danger"})
+                        </div>
+                        <div class="col-md2">
+
+
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                                Выбрать картинку
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RubricName, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-7">
+                    @Html.DropDownList("RubricId", ViewBag.Rublics as SelectList,
+                        htmlAttributes: new {@class = "form-control"})
+                    @*@Html.EditorFor(model => model.RubricId, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @*@Html.ValidationMessageFor(model => model.Rubric.NameRubric, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SourceName, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-7">
+                    @Html.DropDownList("NewsSourceId", ViewBag.SourceNews as SelectList,
+                        htmlAttributes: new {@class = "form-control"})
+
+                    @*@Html.EditorFor(model => model.SourceNewsId, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @*@Html.ValidationMessageFor(model => model.NewsSource.NameSourceNews, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" name="submitButton" value="Create" class="btn btn-primary btn-sm"/>
+
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "ListNews")
+    </div>
+

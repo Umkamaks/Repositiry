@@ -1,0 +1,62 @@
+﻿@model WEB.Models.NewsRubricViewModel
+
+@{
+    ViewBag.Title = "ListNews";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@Html.Partial("SearchView")
+<table class="table">
+    <tr>
+        <th>
+            <p>Рубрика</p>
+        </th>
+        <th>
+            <p>Название статьи</p>
+        </th>
+        <th>
+            <p>Предостмотр</p>
+        </th>
+        <th>
+            <p>Дата создания</p>
+        </th>
+        <th>
+            <p>Картинка</p>
+        </th>
+        <th>
+            <p>Источник новости</p>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.NewsViewModel)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RubricName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TitleNews)
+            </td>
+            <td>
+                @Html.Raw(item.PreviewNews)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDateTimeNews.Value.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StringImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourceName)
+            </td>
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })|
+                @Html.ActionLink("Details", "Details", new { id = item.Id })|
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>*@
+        </tr>
+    }
+</table>
+
+

@@ -79,5 +79,16 @@ namespace BLL.Services
             Mapper.Initialize(cfg => cfg.CreateMap<Rubric, RubricDTO>());
             return Mapper.Map<Rubric, RubricDTO>(rubric);
         }
+
+        public void SetNews(NewsDTO newsDTO)
+        {
+            if (newsDTO == null)
+                throw new ValidationException("Пустая новость", "");
+
+            Mapper.Initialize(cfr => cfr.CreateMap<NewsDTO, News>());
+          
+            News news = Mapper.Map<NewsDTO, News>(newsDTO);
+            Database.News.Create(news);
+        }
     }
 }
