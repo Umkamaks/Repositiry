@@ -65,7 +65,7 @@ namespace DAL.EF
                 PreviewNews = "Верховный суд США приостановил судебный запрет по иммиграционному указу президента Дональда Трампа. Решение опубликовано на сайте суда. В документе говорится о том, что Верховный суд разрешил действие указа до по крайней мере 12.00 12 сентября(19.00 по Киеву).",
                 FullNews = "1 opCreateDatabaseIfModelChanges: данный инициализатор проверяет на соответствие моделям определения таблиц в базе данных. И если модели не соответствуют определению таблиц, то база данные пересоздается",
                 CreateDateTimeNews = DateTime.Now,
-                StringImage = "/Images/Carousel_Placeholder.png",
+                StringImage = "/Images/06334563-bc44-4f8e-b9cc-c725da946172.jpeg",
 
                 Rubric = rubric1,
                 NewsSource = newsSource1
@@ -79,7 +79,7 @@ namespace DAL.EF
                 FullNews =
                     "2 opCreateDatabaseIfModelChanges: данный инициализатор проверяет на соответствие моделям определения таблиц в базе данных. И если модели не соответствуют определению таблиц, то база данные пересоздается",
                 CreateDateTimeNews = DateTime.Now,
-                StringImage = "/Images/Carousel_Placeholder.png",
+                StringImage = "/Images/8a33a883-3d7b-4917-b3d5-645b7fc422ad.jpeg",
                 Rubric = rubric3,
                 NewsSource = newsSource2
             };
@@ -90,7 +90,7 @@ namespace DAL.EF
                 PreviewNews = "В США парк Буш Гарден эвакуировал фламинго из-за урагана Ирмы, обрушившегося на штат. Видео эвакуации птиц поделился телеканал CNN.В целом планировалось спасать 12 тысяч особей.Судя по информации, обнародованной телеканалом, в настоящее время птицам ничего не угрожает.",
                 FullNews = "3 opCreateDatabaseIfModelChanges: данный инициализатор проверяет на соответствие моделям определения таблиц в базе данных. И если модели не соответствуют определению таблиц, то база данные пересоздается",
                 CreateDateTimeNews = DateTime.Now,
-                StringImage = "/Images/Carousel_Placeholder.png",
+                StringImage = "/Images/e59e1294-1c2f-4546-bf0b-8a511275c0bd.jpeg",
                 Rubric = rubric2,
                 NewsSource = newsSource1
             };
@@ -101,7 +101,7 @@ namespace DAL.EF
                 PreviewNews = "В США парк Буш Гарден эвакуировал фламинго из-за урагана Ирмы, обрушившегося на штат. Видео эвакуации птиц поделился телеканал CNN.В целом планировалось спасать 12 тысяч особей.Судя по информации, обнародованной телеканалом, в настоящее время птицам ничего не угрожает.",
                 FullNews = "4 opCreateDatabaseIfModelChanges: данный инициализатор проверяет на соответствие моделям определения таблиц в базе данных. И если модели не соответствуют определению таблиц, то база данные пересоздается",
                 CreateDateTimeNews = DateTime.Now,
-                StringImage = "/Images/Carousel_Placeholder.png",
+                StringImage = "/Images/8a33a883-3d7b-4917-b3d5-645b7fc422ad.jpeg",
                 Rubric = rubric2,
                 NewsSource = newsSource3
             };

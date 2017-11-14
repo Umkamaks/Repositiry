@@ -97,7 +97,7 @@ namespace WEB.Controllers
         {
             string image = bgSrc.Substring(22);
             var myfilename = string.Format(@"{0}", Guid.NewGuid());
-            string filepath = "~/Image/" + myfilename + ".jpeg";
+            string filepath = "~/Images/" + myfilename + ".jpeg";
             var bytess = Convert.FromBase64String(image);
             using (var imageFile = new FileStream(Server.MapPath(filepath), FileMode.Create))
             {

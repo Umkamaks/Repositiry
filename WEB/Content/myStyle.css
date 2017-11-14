@@ -74,8 +74,20 @@ img {
     margin-bottom: 10px;
     border-top: 1px solid #cccccc; /* Линия сверху текста */
     border-bottom: 1px solid #cccccc;
-}
+    margin-right: 22px;
+    width: 47%;
 
+
+}
+.table_news_full {
+    background-color: #fbfbfb;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 1px solid #cccccc; /* Линия сверху текста */
+    border-bottom: 1px solid #cccccc;
+    /*margin-right: 10px;*/
+    width: auto;
+}
     .table_news:hover {
         background-color: #e6e6e6
     }
@@ -89,14 +101,17 @@ img {
 }
 
 .title_news {
-    text-align: center;
+    font-weight: bold;
+    text-align: justify;
+    padding: 10px;
+    
 }
 
 .image {
     margin-left: 10px;
     margin-right: 10px;
-    width: 100px;
-    height: 90px;
+    width: 200px;
+   
 }
 
 .source_news {
@@ -129,3 +144,40 @@ img {
         color: #0c0c0c;
         text-decoration: none;
     }
+.imageBox {
+    position: relative;
+    height: 700px;
+    width: 700px;
+    border: 1px solid #aaa;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor: move;
+}
+
+.imageBox .thumbBox {
+    position: absolute;
+    top: 50%;
+    left: 22%;
+    width: 600px;
+    height: 400px;
+    margin-top: -200px;
+    margin-left: -100px;
+    border: 1px solid rgb(102, 102, 102);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0% 0% transparent;
+}
+
+.imageBox .spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    line-height: 400px;
+    background: rgba(0,0,0,0.7);
+}
+.modal-dialog {
+    width: 900px;
+}

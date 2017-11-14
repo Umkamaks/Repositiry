@@ -47,6 +47,7 @@ namespace WEB.Controllers
 
             NewsRubricViewModel newsRubricViewModel = new NewsRubricViewModel
             {
+                PageSize = news.ToPagedList(pageNumber, pageSize).Count(),
                 NewsViewModel = news,
                 RubricViewModel = rubrics
             };
@@ -58,6 +59,8 @@ namespace WEB.Controllers
 
         public ActionResult News(int? id, string rubric)
         {
+            int pageSize = 3;
+            
             IEnumerable<NewsDTO> newsDtos = newsService.GetAllNews();
 
             Mapper.Initialize(cfg => cfg.CreateMap<NewsDTO, NewsViewModel>()
@@ -78,11 +81,12 @@ namespace WEB.Controllers
 
             NewsRubricViewModel newsRubricViewModel = new NewsRubricViewModel
             {
+                PageSize = news.Count(),
                 NewsDTO = newsService.GetNews(id),
                 NewsViewModel = news,
                 RubricViewModel = rubrics
             };
-     
+            ViewBag.News = news.ToPagedList(1, pageSize);
             return View(newsRubricViewModel);
         }
 
