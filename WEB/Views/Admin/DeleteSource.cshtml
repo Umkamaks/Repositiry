@@ -1,0 +1,33 @@
+﻿@model WEB.Models.SourceViewModel
+
+@{
+    ViewBag.Title = "Удаление источника новости";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Удаление источника новости</h2>
+
+<h3>Вы уверены в удалении?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameSourceNews)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameSourceNews)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" />
+        </div>
+    }
+</div>

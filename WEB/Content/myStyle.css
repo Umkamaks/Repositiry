@@ -181,3 +181,7 @@ img {
 .modal-dialog {
     width: 900px;
 }
+.search {
+    margin-top:20px;
+    margin-bottom:20px;
+}

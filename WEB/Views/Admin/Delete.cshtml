@@ -1,0 +1,62 @@
+﻿@model WEB.Models.NewsViewModel
+
+@{
+    ViewBag.Title = "Удаление новости";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Вы уверены в удалении новости?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleNews)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleNews)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PreviewNews)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreviewNews)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullNews)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullNews)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDateTimeNews)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDateTimeNews)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StringImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StringImage)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" />
+        </div>
+    }
+</div>
+
+

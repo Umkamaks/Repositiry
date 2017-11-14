@@ -237,6 +237,17 @@
     <Content Include="Views\Admin\Create.cshtml" />
     <Content Include="Views\Admin\DownloadImagView.cshtml" />
     <Content Include="Views\PartialViews\Carusel.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\Delete.cshtml" />
+    <Content Include="Views\Admin\RubricList.cshtml" />
+    <Content Include="Views\Admin\CreateRubric.cshtml" />
+    <Content Include="Views\Admin\EditRubric.cshtml" />
+    <Content Include="Views\Admin\DeleteRubric.cshtml" />
+    <Content Include="Views\Admin\SourceList.cshtml" />
+    <Content Include="Views\Admin\CreateSource.cshtml" />
+    <Content Include="Views\Admin\EditSource.cshtml" />
+    <Content Include="Views\Admin\DeleteSource.cshtml" />
+    <Content Include="Views\PartialViews\PaginationAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

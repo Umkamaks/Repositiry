@@ -1,0 +1,13 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using WEB.Models
+@{
+    if (ViewBag.News is IPagedList<NewsViewModel>)
+    {
+        <div class="pagin">
+            @Html.PagedListPager((IPagedList<NewsViewModel>)ViewBag.News, page => Url.Action("ListNews", "Admin", new { page }))
+        </div>
+    }
+
+}
+

@@ -21,6 +21,21 @@ namespace BLL.Services
             Database = dataBase;
         }
 
+        public void DeleteNews(int? id)
+        {
+            if (id == null)
+                throw new ValidationException("Не установлен Id новости", "");
+            Database.News.Delete(id.Value);
+           
+        }
+
+        public void DeleteRubric(int? id)
+        {
+            if (id == null)
+                throw new ValidationException("Не установлен Id рубрики", "");
+            Database.Rubric.Delete(id.Value);
+        }
+
         public void Dispose()
         {
             Database.Dispose();
@@ -89,6 +104,61 @@ namespace BLL.Services
           
             News news = Mapper.Map<NewsDTO, News>(newsDTO);
             Database.News.Create(news);
+        }
+
+
+        public void UpdataNews(NewsDTO newsDTO)
+        {
+            if (newsDTO == null)
+                throw new ValidationException("Пустая новость", "");
+            Mapper.Initialize(cfr => cfr.CreateMap<NewsDTO, News>());
+            News news = Mapper.Map<NewsDTO, News>(newsDTO);
+            Database.News.Update(news);
+        }
+
+        public void SetRubric(RubricDTO rubricDTO)
+        {
+            if (rubricDTO == null)
+                throw new ValidationException("Пустая рубрика", "");
+            Mapper.Initialize(cfr => cfr.CreateMap<RubricDTO, Rubric>());
+
+            Rubric rubric = Mapper.Map<RubricDTO, Rubric>(rubricDTO);
+            Database.Rubric.Create(rubric);
+        }
+
+        public void UpdataRubric(RubricDTO rubricDTO)
+        {
+            if (rubricDTO == null)
+                throw new ValidationException("Пустая рубрика", "");
+            Mapper.Initialize(cfr => cfr.CreateMap<RubricDTO, Rubric>());
+            Rubric rubric  = Mapper.Map<RubricDTO, Rubric>(rubricDTO);
+            Database.Rubric.Update(rubric);
+        }
+
+        public void SetNewsSource(NewsSourceDTO newsSourceDTO)
+        {
+            if (newsSourceDTO == null)
+                throw new ValidationException("Пустой источник новости", "");
+            Mapper.Initialize(cfr => cfr.CreateMap<NewsSourceDTO, NewsSource>());
+
+            NewsSource newsSource = Mapper.Map<NewsSourceDTO, NewsSource>(newsSourceDTO);
+            Database.NewsSource.Create(newsSource);
+        }
+
+        public void UpdataSource(NewsSourceDTO newsSourceDTO)
+        {
+            if (newsSourceDTO == null)
+                throw new ValidationException("Пустой источник новости", "");
+            Mapper.Initialize(cfr => cfr.CreateMap<NewsSourceDTO, NewsSource>());
+            NewsSource newsSource  = Mapper.Map<NewsSourceDTO, NewsSource>(newsSourceDTO);
+            Database.NewsSource.Update(newsSource);
+        }
+
+        public void DeleteSource(int? id)
+        {
+            if (id == null)
+                throw new ValidationException("Не установлен Id источника новости", "");
+            Database.NewsSource.Delete(id.Value);
         }
     }
 }

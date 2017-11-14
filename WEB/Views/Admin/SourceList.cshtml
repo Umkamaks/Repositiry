@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WEB.Models.SourceViewModel>
+
+@{
+    ViewBag.Title = "Источники новости";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h2>Источник новости</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NameSourceNews)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameSourceNews)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditSource", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "DeleteSource", new { id=item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+

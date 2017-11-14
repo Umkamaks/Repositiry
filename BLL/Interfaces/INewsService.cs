@@ -19,6 +19,19 @@ namespace BLL.Interfaces
         IEnumerable<RubricDTO> GetAllRubrics();
 
         void SetNews(NewsDTO newsDTO);
+
+        void UpdataNews(NewsDTO newsDTO);
+
+        void DeleteNews(int? id);
+        void DeleteRubric(int? id);
+
+        void SetRubric(RubricDTO rubricDTO);
+        void UpdataRubric(RubricDTO rubricDTO);
+
+        void SetNewsSource(NewsSourceDTO newsSourceDTO);
+
+        void UpdataSource(NewsSourceDTO newsSourceDTO);
+        void DeleteSource(int? id);
         void Dispose();
     }
 }

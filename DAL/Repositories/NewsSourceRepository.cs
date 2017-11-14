@@ -21,13 +21,15 @@ namespace DAL.Repositories
         public void Create(NewsSource item)
         {
             newsContext.NewsSources.Add(item);
+            newsContext.SaveChanges();
         }
 
         public void Delete(int id)
         {
             NewsSource newsSource = newsContext.NewsSources.Find(id);
-            if(newsSource!=null)
+            newsContext.Entry(newsSource).Collection(p => p.News).Load();
             newsContext.NewsSources.Remove(newsSource);
+            newsContext.SaveChanges(); 
         }
 
         public IEnumerable<NewsSource> Find(Func<NewsSource, bool> predicate)
@@ -48,6 +50,7 @@ namespace DAL.Repositories
         public void Update(NewsSource item)
         {
             newsContext.Entry(item).State = EntityState.Modified;
+            newsContext.SaveChanges();
         }
     }
 }

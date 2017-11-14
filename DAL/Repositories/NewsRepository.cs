@@ -29,6 +29,7 @@ namespace DAL.Repositories
             News news = newsContext.News.Find(id);
             if (news != null)
                 newsContext.News.Remove(news);
+            newsContext.SaveChanges();
         }
 
         public IEnumerable<News> Find(Func<News, bool> predicate)
@@ -49,6 +50,7 @@ namespace DAL.Repositories
         public void Update(News item)
         {
             newsContext.Entry(item).State = EntityState.Modified;
+            newsContext.SaveChanges();
         }
     }
 }

@@ -21,18 +21,21 @@ namespace DAL.Repositories
         public void Create(Rubric item)
         {
             newsContext.Rubrics.Add(item);
+            newsContext.SaveChanges();
         }
 
         public void Delete(int id)
         {
             Rubric rubric = newsContext.Rubrics.Find(id);
-            if (rubric != null)
-                newsContext.Rubrics.Remove(rubric);
+       
+            newsContext.Entry(rubric).Collection(p => p.News).Load();
+            newsContext.Rubrics.Remove(rubric);
+            newsContext.SaveChanges();
         }
 
         public IEnumerable<Rubric> Find(Func<Rubric, bool> predicate)
         {
-            return newsContext.Rubrics.Include(news=>news.News).Where(predicate).ToList();
+            return newsContext.Rubrics.Include(news => news.News).Where(predicate).ToList();
         }
 
         public Rubric Get(int id)
@@ -48,6 +51,7 @@ namespace DAL.Repositories
         public void Update(Rubric item)
         {
             newsContext.Entry(item).State = EntityState.Modified;
+            newsContext.SaveChanges();
         }
     }
 }

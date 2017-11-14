@@ -1,0 +1,29 @@
+﻿@model IEnumerable<WEB.Models.RubricViewModel>
+@{
+    ViewBag.Title = "Рубрики";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NameRubric)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameRubric)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditRubric", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "DeleteRubric", new { id=item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
