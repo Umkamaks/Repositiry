@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using BLL.Interfaces;
 using AutoMapper;
 using BLL.DTO;
 using WEB.Models;
-using System.Data.Entity;
 using System.IO;
-using DAL.Entities;
 using PagedList;
 
 namespace WEB.Controllers
 {
+    [Authorize]
     [ValidateInput(false)]
     public class AdminController : Controller
     {
@@ -25,6 +22,7 @@ namespace WEB.Controllers
             this.newsService = newsService;
         }
         // GET: Admin
+        [Authorize(Roles = "admin")]
         public ActionResult ListNews(string NameRubric, string NameSourceNews, string NameDataCreate, int? page)
         {
             int pageSize = 3;
@@ -58,6 +56,9 @@ namespace WEB.Controllers
             SelectList rubrics = new SelectList(newsService.GetAllRubrics(), "NameRubric", "NameRubric");
 
             SelectList suorceNews = new SelectList(newsService.GetAllNewsSources(), "NameSourceNews", "NameSourceNews");
+            ViewBag.NameRubric = NameRubric;
+            ViewBag.NameSourceNews = NameSourceNews;
+            ViewBag.NameDataCreate = NameDataCreate;
             ViewBag.Rublics = rubrics;
             ViewBag.SourceNews = suorceNews;
             ViewBag.News = newsView.ToPagedList(pageNumber, pageSize);
@@ -176,7 +177,11 @@ namespace WEB.Controllers
             Mapper.Initialize(cfg => cfg.CreateMap<NewsDTO, NewsViewModel>());
 
             NewsViewModel news = Mapper.Map<NewsDTO, NewsViewModel>(newsDto);
-
+            string fullPath = Server.MapPath(news.StringImage);
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
             newsService.DeleteNews(id.Value);
             return RedirectToAction("ListNews");
         }

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.EF;
 using DAL.Entities;
 using DAL.Interfaces;
@@ -27,9 +25,11 @@ namespace DAL.Repositories
         public void Delete(int id)
         {
             News news = newsContext.News.Find(id);
+            
             if (news != null)
                 newsContext.News.Remove(news);
             newsContext.SaveChanges();
+
         }
 
         public IEnumerable<News> Find(Func<News, bool> predicate)

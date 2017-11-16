@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.EF;
 using DAL.Entities;
 using DAL.Interfaces;
@@ -15,6 +11,8 @@ namespace DAL.Repositories
         private NewsRepository newsRepository;
         private NewsSourceRepository sourceRepository;
         private RubricRepository rubricRepository;
+        private UserRepository userRepository;
+        private RoleRepository roleRepository;
 
         public EFUnitOfWork(string connectionString)
         {
@@ -50,6 +48,26 @@ namespace DAL.Repositories
                 return rubricRepository;
             }
 
+        }
+
+        public IRepository<Role> Role
+        {
+            get
+            {
+                if (roleRepository == null)
+                    roleRepository = new RoleRepository(newsContext);
+                return roleRepository;
+            }
+        }
+
+        public IRepository<User> User
+        {
+            get
+            {
+                if (userRepository == null)
+                    userRepository = new UserRepository(newsContext);
+                return userRepository;
+            }
         }
 
         public void Save()

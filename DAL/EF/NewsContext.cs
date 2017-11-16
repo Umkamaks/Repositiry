@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.Entities;
 
 namespace DAL.EF
@@ -13,11 +9,13 @@ namespace DAL.EF
         public DbSet<News> News { get; set; }
         public DbSet<NewsSource> NewsSources { get; set; }
         public DbSet<Rubric> Rubrics { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
-        static NewsContext()
-        {
-            Database.SetInitializer<NewsContext>(new NewsDbInitializer());
-        }
+        //static NewsContext()
+        //{
+        //    Database.SetInitializer<NewsContext>(new NewsDbInitializer());
+        //}
 
         public NewsContext(string connectionString) : base(connectionString) { }
     }
@@ -26,6 +24,19 @@ namespace DAL.EF
     {
         protected override void Seed(NewsContext context)
         {
+            context.Roles.Add(new Role { Id = 1, Name = "admin" });
+            
+
+            context.Users.Add(new User
+            {
+                Email = "Admin@admin.net",
+                Password = "Admin",
+                RoleId = 1
+            });
+            
+
+
+
             Rubric rubric1 = new Rubric
             {
                 Id = 1,
@@ -79,7 +90,7 @@ namespace DAL.EF
                 FullNews =
                     "2 opCreateDatabaseIfModelChanges: данный инициализатор проверяет на соответствие моделям определения таблиц в базе данных. И если модели не соответствуют определению таблиц, то база данные пересоздается",
                 CreateDateTimeNews = DateTime.Now,
-                StringImage = "/Images/8a33a883-3d7b-4917-b3d5-645b7fc422ad.jpeg",
+                StringImage = "/Images/ad49c048-0942-40a8-9f0e-d26db8ef94d0.jpeg",
                 Rubric = rubric3,
                 NewsSource = newsSource2
             };
@@ -101,7 +112,7 @@ namespace DAL.EF
                 PreviewNews = "В США парк Буш Гарден эвакуировал фламинго из-за урагана Ирмы, обрушившегося на штат. Видео эвакуации птиц поделился телеканал CNN.В целом планировалось спасать 12 тысяч особей.Судя по информации, обнародованной телеканалом, в настоящее время птицам ничего не угрожает.",
                 FullNews = "4 opCreateDatabaseIfModelChanges: данный инициализатор проверяет на соответствие моделям определения таблиц в базе данных. И если модели не соответствуют определению таблиц, то база данные пересоздается",
                 CreateDateTimeNews = DateTime.Now,
-                StringImage = "/Images/8a33a883-3d7b-4917-b3d5-645b7fc422ad.jpeg",
+                StringImage = "/Images/3eb80251-651c-4ff3-8983-44b80f7f6b9a.jpeg",
                 Rubric = rubric2,
                 NewsSource = newsSource3
             };

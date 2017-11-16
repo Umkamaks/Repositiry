@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using AutoMapper;
 using BLL.DTO;
 using BLL.Infrastructure;
@@ -26,7 +22,7 @@ namespace BLL.Services
             if (id == null)
                 throw new ValidationException("Не установлен Id новости", "");
             Database.News.Delete(id.Value);
-           
+
         }
 
         public void DeleteRubric(int? id)
@@ -55,7 +51,14 @@ namespace BLL.Services
 
         public IEnumerable<RubricDTO> GetAllRubrics()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Rubric, RubricDTO>());
+
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<News, NewsDTO>();
+                cfg.CreateMap<Rubric, RubricDTO>()
+                .ForMember(p => p.News, opt => opt.MapFrom(src => src.News));
+            });
+            Mapper.Configuration.AssertConfigurationIsValid();
             return Mapper.Map<IEnumerable<Rubric>, List<RubricDTO>>(Database.Rubric.GetAll());
         }
 
@@ -101,7 +104,7 @@ namespace BLL.Services
                 throw new ValidationException("Пустая новость", "");
 
             Mapper.Initialize(cfr => cfr.CreateMap<NewsDTO, News>());
-          
+
             News news = Mapper.Map<NewsDTO, News>(newsDTO);
             Database.News.Create(news);
         }
@@ -131,7 +134,7 @@ namespace BLL.Services
             if (rubricDTO == null)
                 throw new ValidationException("Пустая рубрика", "");
             Mapper.Initialize(cfr => cfr.CreateMap<RubricDTO, Rubric>());
-            Rubric rubric  = Mapper.Map<RubricDTO, Rubric>(rubricDTO);
+            Rubric rubric = Mapper.Map<RubricDTO, Rubric>(rubricDTO);
             Database.Rubric.Update(rubric);
         }
 
@@ -150,7 +153,7 @@ namespace BLL.Services
             if (newsSourceDTO == null)
                 throw new ValidationException("Пустой источник новости", "");
             Mapper.Initialize(cfr => cfr.CreateMap<NewsSourceDTO, NewsSource>());
-            NewsSource newsSource  = Mapper.Map<NewsSourceDTO, NewsSource>(newsSourceDTO);
+            NewsSource newsSource = Mapper.Map<NewsSourceDTO, NewsSource>(newsSourceDTO);
             Database.NewsSource.Update(newsSource);
         }
 
@@ -160,5 +163,35 @@ namespace BLL.Services
                 throw new ValidationException("Не установлен Id источника новости", "");
             Database.NewsSource.Delete(id.Value);
         }
+        //private static ISet<T> ToISet<T>(IEnumerable<T> list)
+        //{
+        //    ISet<T> set = null;
+
+        //    if (list != null)
+        //    {
+        //        set = new HashSet<T>();
+
+        //        foreach (T item in list)
+        //        {
+        //            set.Add(item);
+        //        }
+        //    }
+
+        //    return set;
+        //}
+        //private static ISet<TDestination> ToISet<TSource, TDestination>(IEnumerable<TSource> source)
+        //{
+        //    ISet<TDestination> set = null;
+        //    if (source != null)
+        //    {
+        //        set = new HashSet<TDestination>();
+
+        //        foreach (TSource item in source)
+        //        {
+        //            set.Add(Mapper.Map<TSource, TDestination>(item));
+        //        }
+        //    }
+        //    return set;
+        //}
     }
 }

@@ -1,5 +1,4 @@
 ﻿
-@using DAL.Entities
 @model WEB.Models.NewsRubricViewModel
 
 <div class="left-col">
@@ -11,7 +10,7 @@
         <ul>
             @{
                 int i = 0;
-                foreach (News news in rubrics.News)
+                foreach (var news in rubrics.News)
                 {
                     i++;
 

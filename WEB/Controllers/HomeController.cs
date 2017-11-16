@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using BLL.DTO;
 using BLL.Interfaces;
 using WEB.Models;
-using System.Data.Entity;
 using PagedList;
 
 namespace WEB.Controllers
@@ -34,7 +30,7 @@ namespace WEB.Controllers
                 .ForMember(d => d.SourceName, opt => opt.MapFrom(src => src.NewsSource.NameSourceNews)));
 
 
-            var news = Mapper.Map<IEnumerable<NewsDTO>, List<NewsViewModel>>(newsDtos)
+            IEnumerable<NewsViewModel> news = Mapper.Map<IEnumerable<NewsDTO>, List<NewsViewModel>>(newsDtos)
                 .Where(p => rubric == null || p.RubricName == rubric)
                 .OrderByDescending(i => i.Id);
 
@@ -42,8 +38,11 @@ namespace WEB.Controllers
 
             Mapper.Initialize(cfg => cfg.CreateMap<RubricDTO, RubricViewModel>()
                 .ForMember(p => p.News, opt => opt.MapFrom(src => src.News)));
+          
+            Mapper.Configuration.AssertConfigurationIsValid();
 
-            var rubrics = Mapper.Map<IEnumerable<RubricDTO>, IEnumerable<RubricViewModel>>(rubricDTO);
+            IEnumerable<RubricViewModel> rubrics = Mapper.Map<IEnumerable<RubricDTO>, IEnumerable<RubricViewModel>>(rubricDTO);
+
 
             NewsRubricViewModel newsRubricViewModel = new NewsRubricViewModel
             {
@@ -60,7 +59,7 @@ namespace WEB.Controllers
         public ActionResult News(int? id, string rubric)
         {
             int pageSize = 3;
-            
+
             IEnumerable<NewsDTO> newsDtos = newsService.GetAllNews();
 
             Mapper.Initialize(cfg => cfg.CreateMap<NewsDTO, NewsViewModel>()
@@ -89,6 +88,5 @@ namespace WEB.Controllers
             ViewBag.News = news.ToPagedList(1, pageSize);
             return View(newsRubricViewModel);
         }
-
     }
 }

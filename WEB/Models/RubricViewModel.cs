@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using BLL.DTO;
 
 namespace WEB.Models
@@ -14,6 +10,6 @@ namespace WEB.Models
         [Display(Name = "Название рубрики")]
         public string NameRubric { get; set; }
 
-        public IEnumerable News{ get; set; }
+        public ICollection<NewsDTO> News{ get; set; }
     }
 }

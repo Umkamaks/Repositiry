@@ -5,7 +5,7 @@
     if (ViewBag.News is IPagedList<NewsViewModel>)
     {
         <div class="pagin">
-            @Html.PagedListPager((IPagedList<NewsViewModel>)ViewBag.News, page => Url.Action("ListNews", "Admin", new { page }))
+            @Html.PagedListPager((IPagedList<NewsViewModel>)ViewBag.News, page => Url.Action("ListNews", "Admin", new { page, NameRubric = ViewBag.NameRubric, NameSourceNews = ViewBag.NameSourceNews, NameDataCreate = ViewBag.NameDataCreate }))
         </div>
     }
 

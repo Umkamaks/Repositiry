@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using BLL.Interfaces;
 using BLL.Services;
@@ -34,6 +32,7 @@ namespace WEB.Utils
         private void AddBindings()
         {
             kernel.Bind<INewsService>().To<NewsService>();
+            kernel.Bind<IIdentityServices>().To<IdentityServices>();
         }
     }
 }
