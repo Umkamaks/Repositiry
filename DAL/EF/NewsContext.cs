@@ -29,7 +29,7 @@ namespace DAL.EF
 
             context.Users.Add(new User
             {
-                Email = "Admin@admin.net",
+                Email = "Admin@admin.com",
                 Password = "Admin",
                 RoleId = 1
             });
